@@ -1,9 +1,0 @@
-$nomention
-$ephemeral
-$onlyIf[$getServerVar[en]==0;]
-$sendMessage[<:tok:1040671556692623371> ah no sorry the english language is already set]
-$onlyAdmin[
-🇨🇵
-❗désolé mais vous avez pas les permissions administrateurs
-🇬🇧
-❗sorry but you don't have admin permissions]

@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@akarui/aoi.panel": "^0.0.2",
-    "aoi.js": "^6.0.3"
-  }
-}
