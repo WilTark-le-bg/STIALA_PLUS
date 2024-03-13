@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@akarui/aoi.music": "^2.3.2",
+    "@akarui/aoi.panel": "^0.0.8",
+    "aoi.canvas": "^1.2.6",
+    "aoi.js": "^6.7.1",
+    "aoi.loader": "^1.0.3"
+  }
+}
