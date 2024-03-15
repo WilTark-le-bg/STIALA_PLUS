@@ -3,7 +3,8 @@ const fs = require('fs');
 const { Panel } = require("@akarui/aoi.panel");
 let configt = fs.readFileSync('config.json');
 let token = JSON.parse(configt);
-
+let pkgr = fs.readFileSync('package.json');
+let pkge = JSON.parse(pkgr);
 const client = new AoiClient({
   token: token.token,
   prefix: "$",
@@ -61,3 +62,27 @@ channel: "1026572494611689482",
 setup: "true",
 });
 console.log(karl);
+
+client.readyCommand({
+  channel: token.channelId, 
+  code: `
+    $title[<:tik:1040670506199810068> Bot allumé !]
+    $description[### info:
+    - Ping: $ping 
+**Nodejs-modules:**
+- aoijs: 
+> version: v6.7.1
+     - aoi.panel:
+> version: v0.0.9 
+> Port: 25302
+     - aoi.db:
+     - aoi.music:
+> version: v2.3.2
+     - aoi.canvas:
+> version: v1.2.6
+- serveur: kasycorp
+    ]
+    $image[https://cdn.discordapp.com/attachments/1020016533029797909/1217908147356696616/Sans_titre_115_20240314195152.png]
+    $color[0099ff] 
+  `
+});
