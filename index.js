@@ -1,47 +1,59 @@
+//modules nodejs-----------------------------------------------------------------
 const { AoiClient, LoadCommands } = require("aoi.js");
 const fs = require('fs');
 const { Panel } = require("@akarui/aoi.panel");
+const { AoiVoice, PlayerEvents, PluginName, Cacher, Filter } = require("@akarui/aoi.music");
+
+//config .json-----------------------------------------------------------------
 let configt = fs.readFileSync('config.json');
 let token = JSON.parse(configt);
-let pkgr = fs.readFileSync('package.json');
-let pkge = JSON.parse(pkgr);
+
+
+//config aoijs-----------------------------------------------------------------
 const client = new AoiClient({
   token: token.token,
   prefix: "$",
-  intents: ["MessageContent", "Guilds", "GuildMessages"],
-  events: ["onMessage", "onInteractionCreate"],
+  intents: ["MessageContent", "Guilds", "GuildMessages"], // Default Intents
+  events: ["onMessage", "onInteractionCreate"], // Default Events
   database: {
     type: "aoi.db",
     db: require("@akarui/aoi.db"),
+    dbType: "KeyValue",
     tables: ["main"],
-    path: "./database/",
-    extraOptions: {
-      dbType: "KeyValue",
-      },
+    securityKey: "a-32-characters-long-string-here", // Don't change anything here if you're not sure what you're doing.
+  }
+ });
 
+const voice = new AoiVoice(client, {
+  searchOptions: {
+  soundcloudClientId: "Soundcloud ID", // optional
+  youtubegl: "US",
   },
-});
-const loader = new LoadCommands(client);
-loader.load(client.cmd, "./commands/", true);
+  requestOptions: {
+  offsetTimeout: 0,
+  soundcloudLikeTrackLimit: 200,
+  },
+  });
 
+//loader cmds-----------------------------------------------------------------
+client.loadCommands("./commands/", true);
+require("./handler/variables.js")(client)
+
+//aoi.panel-----------------------------------------------------------------
 const panel = new Panel({
   port: 25302,
   client: client,
 });
-client.status({
-  name: "stiala plus soon..",
-  type: "STREAMING",
-  time: 25,
-  URL: "https://twitch.tv/discord",
-});
 panel.loadAPI({
   auth: "Authentication key here (random string)", // no spaces, keep it only alphanumeric...
 });
-const karl = "token is " + token.token;
 panel.loadGUI({
   username: [token.userp],
   password: [token.passwordp],
 });
+
+
+
 const app = panel.app;
 app.get("/status", (req, res) => {
     res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Document</title></head><link rel="stylesheet" href="https://extensions.aoijs.org/assets/onbot.css" /><div><div class="on"></div><h1>the bot is online</h1></div></html>');
@@ -49,19 +61,15 @@ app.get("/status", (req, res) => {
 app.get("/example", (req, res) => {
 res.send("This is an example page.");
 })
-client.variables({
-membres: 0,
-role: "",
-emoji: "",
-msg: "",
-chnl: "",
-id: "",
-user: "",
-category: "1030353877054263307",
-channel: "1026572494611689482",
-setup: "true",
+
+
+//info connect-----------------------------------------------------------------
+client.status({
+  name: "stiala plus soon..",
+  type: "STREAMING",
+  time: 25,
+  URL: "https://twitch.tv/discord",
 });
-console.log(karl);
 
 client.readyCommand({
   channel: token.channelId, 
@@ -86,3 +94,6 @@ client.readyCommand({
     $color[0099ff] 
   `
 });
+
+const karl = "token is " + token.token;
+console.log(karl);

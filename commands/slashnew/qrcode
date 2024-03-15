@@ -1,0 +1,13 @@
+module.exports = {
+    name: "createqr",
+    description: "Create a qrcode.",
+    code: `
+    Slash "qrcode" command have been created successfully!
+    $createApplicationCommand[$guildID;qrcode;Create a qrcode.;true;true;slash;[{
+        "name": "input",
+        "description": "lien ou text",
+        "required": true,
+        "type": 3
+    }]]
+    `
+  }

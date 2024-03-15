@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "@akarui/aoi.db": "^2.2.1",
     "@akarui/aoi.music": "^2.3.2",
     "@akarui/aoi.panel": "^0.0.9",
+    "@types/node": "^18.0.6",
     "aoi.canvas": "^1.2.6",
     "aoi.js": "^6.7.1",
-    "aoi.loader": "^1.0.3"
+    "aoi.loader": "^1.0.3",
+    "aoi.parser": "^1.2.6",
+    "node-fetch": "^3.2.6"
   }
 }
