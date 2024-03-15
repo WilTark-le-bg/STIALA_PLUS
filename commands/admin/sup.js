@@ -1,9 +1,9 @@
 module.exports = [
     {
-        name: "ping",
+        name: "sup",
     code: `
   $title[
-    pong!le server a repondu en 
+    $me
   ]
   $description[
   \`\`\`$ping ms\`\`\`
