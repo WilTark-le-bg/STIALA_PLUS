@@ -8,6 +8,12 @@ module.exports = {
         "description": "lien ou text",
         "required": true,
         "type": 3
+    },
+    {
+        "name": "taille",
+        "description": "taille du qrcode",
+        "required": true,
+        "type": 4
     }]]
     `
   }
